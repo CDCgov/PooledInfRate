@@ -22,7 +22,7 @@
   n <- n[mn.nozero]
 
   if(!missing(group)){
-    group.var <- deparse(substitute(group))
+    group.var <- "Group" #deparse(substitute(group))
     xmng.nomiss <- (!is.na(x) & !is.na(m) & !is.na(n) & !is.na(group))
     group <- group[xmng.nomiss]
     groups <- unique(group)
@@ -34,7 +34,7 @@
     groups <- unique(group)
     nGroups <- length(groups)
     group.var <- ""
-    group.dat <- data.frame()
+    group.dat <- data.frame(Group=rep(1,length(x[xmng.nomiss])))
   }
   ans <- vector(mode="list",length=nGroups)
 
@@ -63,7 +63,8 @@
   #                  Scale = rep(1,  nGroups))
 
 
-  if (group.var != "") names(ans)[1] <- group.var
+  names(ans)[1] <- ifelse(group.var != "",group.var,"Group")
+  #if (group.var != "") names(ans)[1] <- group.var
 
   for (i in 1:nGroups) ans[i, 2:5] <- ans.lst[[i]]$scale * c(ans.lst[[i]]$p,  ans.lst[[i]]$lcl, ans.lst[[i]]$ucl, 1)
   if (all(ans$Scale == 1)) ans$Scale <- NULL
