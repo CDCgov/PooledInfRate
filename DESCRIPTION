@@ -2,7 +2,7 @@ Package: PooledInfRate
 Title: Estimation for Pooled or Group Testing
 Description: Implement maximum likelihood-based estimation for pooled or group testing binary data, for pools of different sizes and imperfect tests, and compute the Vector Index used in mosquito surveillance.  
 Type: Package
-Version: 1.2
+Version: 1.3
 Author@R: person("Brad J.","Biggerstaff", role=c("aut","cre"),email="bkb5@cdc.gov")
 Author: Brad J. Biggerstaff [aut, cre]
 Maintainer: "Brad J. Biggerstaff" <bkb5@cdc.gov>

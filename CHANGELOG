@@ -1,3 +1,10 @@
+Version 1.3
+-----------
+
+  User visible:
+
+  1. Fixed a bug in printing of the default calls to pooledBin/pIR.
+
 Version 1.2
 -----------
 
