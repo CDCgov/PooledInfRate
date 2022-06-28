@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 
 PooledInfRate: Estimation from pooled or group testing.
 
+Current version: 1.3
+
 The website for this project is <https://github.com/CDCgov/PooledInfRate>.
 
 PooledInfRate is an [R](www.r-project.org) package that includes functions to estimate proportions from pooled or group testing data.  There is also functionality to estimate differences of such proportions.  Finally, for entomologists, there is functionality to compute the so-called "Vector Index" used to quantify the level of pathogen in vector species, such as the amount of West Nile virus in a population of vector mosquitoes.
