@@ -66,7 +66,7 @@ Other data may naturally be included in data frames, and we will include these d
 
 #### Function interfaces
 
-The functions <tt>pooledBin</tt> ("pooled binary") provides the interface to both point and CI estimates, and there are both <tt>default</tt> and <tt>formula</tt> interfaces provided.  The function <tt>pIR</tt> ("pooled infection rate") is a copy of <tt>pooledBin</tt> with a slightly different, and shorter name merely for convenience; in all the examples below, <tt>pooledBin</tt> and <tt>pIR</tt> can be used interchangeably. For single samples, the default methods are straightforward, with printed output being the point estimate and computed CI:
+The function <tt>pooledBin</tt> ("pooled binary") provides the interface to both point and CI estimates, and there are both <tt>default</tt> and <tt>formula</tt> interfaces provided.  The function <tt>pIR</tt> ("pooled infection rate") is a copy of <tt>pooledBin</tt> with a slightly different and shorter name merely for convenience; in all the examples below, <tt>pooledBin</tt> and <tt>pIR</tt> can be used interchangeably. For single samples, the default methods are straightforward, with printed output being the point estimate and computed CI:
 ```{r}
 library(PooledInfRate)
 
@@ -95,7 +95,7 @@ This example data set <tt>mosq.dat</tt> does not have a "number of pools" variab
 ```{r}
 pooledBin(Pos ~ m(PoolSize) + n(NumPools), ex2.dat)
 ```
-Because the pool size variable (<tt>m()</tt>) is _required_ for any pooled estimation (and because it is easier when there is less typing), the <tt>m()</tt> specification is optional, so that
+Because the pool size variable [<tt>m()</tt>] is _required_ for any pooled estimation (and because it is easier when there is less typing), the <tt>m()</tt> specification is optional, so that
 ```{r}
 pooledBin(Pos ~ PoolSize + n(NumPools), ex2.dat)
 ```
@@ -142,7 +142,7 @@ pb.out[c("Lower","Upper")]
 
 #### Summary and plot methods
 
-To print out more detailed information on the estimation results, <tt>summary</tt> methods are provided.  The resulting output contains details including the estimates themselves, estimation methods used, the total numbers of positive pools, the total number of individuals, and the total number of pools.
+To print out more detailed information on the estimation results, <tt>summary</tt> methods are provided.  The resulting output contains details including the estimates themselves, estimation methods used, the total number of individuals, the total numbers of pools, and the total number of positive pools.
 ```{r}
 pir.combined.out <- pIR(Pos ~ PoolSize + n(NumPools), ex2.dat)
 summary(pir.combined.out)
@@ -154,7 +154,7 @@ pir.mosq.out <- pIR(Pos ~ PoolSize | Species, mosq.dat)
 print(summary(pir.mosq.out), digits=3)
 ```
 
-Further, the <tt>summary</tt> methods have an argument <tt> simple </tt> that can be used to return the detailed results as a data frame.  To return the summary data frame, set <tt> simple = TRUE </tt> (default is <tt> simple = FALSE </tt>):
+Further, the <tt>summary</tt> methods have an argument <tt> simple </tt> that can be used to return the detailed results as a data frame.  To return the summary data frame, set <tt> simple = TRUE </tt> (default is <tt> simple = FALSE</tt>):
 ```{r}
 summary(pir.mosq.out)
 

@@ -643,8 +643,17 @@
       cc <- lm(y ~ m)
       plot(m,y,xlab="Pool Size",ylab="log((x+0.5)/(n+0.5))",...)
       if(refline) abline(cc)
-      if(printR2) title(bquote(.(names(x)[[i]]) ~ ":" ~ R^2 ~ "=" ~ .(round(summary(cc)$r.squared,2))), cex = 0.75)
-      else title(names(x)[[i]],cex=0.75)
+      #if(printR2) title(bquote(.(names(x)[[i]]) ~ ":" ~ R^2 ~ "=" ~ .(round(summary(cc)$r.squared,2))), cex = 0.75)
+      #if(printR2) title(bquote(.(attr(x,"group.names")[[i]]) ~ ":" ~ R^2 ~ "=" ~ .(round(summary(cc)$r.squared,2))), cex = 0.75)
+      #else title(names(x)[[i]],cex=0.75)
+      if(n.groups > 1){
+        title.group <- as.character(attr(x,"group.names"))[[i]]
+        if(printR2) title(bquote(.(title.group) ~ ":" ~ R^2 ~ "=" ~ .(round(summary(cc)$r.squared,2))), cex = 0.75)
+        else title(bquote(.(title.group)), cex = 0.75)
+      } else {
+        if(printR2) title(bquote(R^2 ~ "=" ~ .(round(summary(cc)$r.squared,2))), cex = 0.75)
+        else title("Model Diagnostic",cex=0.75)
+      }
     }
     invisible(x)
   }

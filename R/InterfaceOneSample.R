@@ -764,8 +764,15 @@
       #if(printR2) cat(paste("R-squared for diagnostic line fit =",round(summary(cc)$r.squared,4),"\n"))
       #if(printR2) title(expression(paste(names(x)[[i]],"\n(",plain(R)^2,"=",round(summary(cc)$r.squared,2),")")),cex=0.75)
       #if(printR2) title(bquote(atop(.(names(x)[[i]]),"(" ~ R^2 ~ "=" ~ .(round(summary(cc)$r.squared,2)) ~ ")")), cex = 0.75)
-      if(printR2) title(bquote(.(names(x)[[i]]) ~ ":" ~ R^2 ~ "=" ~ .(round(summary(cc)$r.squared,2))), cex = 0.75)
-      else title(names(x)[[i]],cex=0.75)
+      #if(printR2) title(bquote(.(names(x)[[i]]) ~ ":" ~ R^2 ~ "=" ~ .(round(summary(cc)$r.squared,2))), cex = 0.75)
+      if(n.groups > 1){
+        title.group <- as.character(attr(x,"group.names"))[[i]]
+        if(printR2) title(bquote(.(title.group) ~ ":" ~ R^2 ~ "=" ~ .(round(summary(cc)$r.squared,2))), cex = 0.75)
+          else title(bquote(.(title.group)), cex = 0.75)
+      } else {
+        if(printR2) title(bquote(R^2 ~ "=" ~ .(round(summary(cc)$r.squared,2))), cex = 0.75)
+          else title("Model Diagnostic",cex=0.75)
+      }
     }
     invisible(x)
   }
