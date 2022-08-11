@@ -79,7 +79,6 @@ with(mosq.dat, pIR(Pos, PoolSize))
 
 When there is a grouping variable, as with the <tt>mosq.dat</tt> data set, an optional <tt>group=</tt> may be used to obtain individual results for each group:
 ```{r}
-pooledBin(Pos~PoolSize|Species,mosq.dat)
 with(mosq.dat, pooledBin(Pos, PoolSize, group = Species))
 ```
 
