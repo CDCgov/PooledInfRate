@@ -54,12 +54,14 @@ pIR(x, \dots)
 %\method{print}{pooledBinList}(x, \dots)
 \method{plot}{pooledBin}(x, pch=16, refline=TRUE, printR2=TRUE,layout=NULL,\dots)
 %\method{plot}{pooledBinList}(x, pch=16, refline=TRUE, printR2=TRUE,layout=NULL,\dots)
+\method{as.data.frame}{pooledBin}(x)
 \method{[}{pooledBin}(x, i, j, drop = if (missing(i)) TRUE else length(cols) ==  1)
 
 \method{print}{pIR}(x, \dots)
 %\method{print}{pIRList}(x, \dots)
 \method{plot}{pIR}(x, pch=16, refline=TRUE, printR2=TRUE,layout=NULL,\dots)
 %\method{plot}{pIRList}(x, pch=16, refline=TRUE, printR2=TRUE, layout=NULL,\dots)
+\method{as.data.frame}{pIR}(x)
 \method{[}{pIR}(x, i, j, drop = if (missing(i)) TRUE else length(cols) ==  1)
 %\method{rame}{pIRList}(x, row.names = NULL, optional = FALSE, \dots)
 
@@ -68,7 +70,7 @@ pIR(x, \dots)
 }
 
 \arguments{
-  \item{x}{If an object of class formula (or one that can be coerced to that class): a symbolic representation of the variables used to identify the number of positive pools, corresponding pool size, and number of pools of corresponding pool size, along with an optional grouping variable.  See the 'Details' section below. Otherwise a vector, specifying the observed number of positive pools, among the number of pools tested (\code{n}). Missing data are omitted}
+  \item{x}{If an object of class formula (or one that can be coerced to that class): a symbolic representation of the variables used to identify the number of positive pools, corresponding pool size, and number of pools of corresponding pool size, along with an optional grouping variable.  See the 'Details' section below. Otherwise a vector, specifying the observed number of positive pools, among the number of pools tested (\code{n}). Missing data are omitted. For methods, objects of class \code{pooledBin}/\code{pIR}.}
 
   \item{data}{an optional data frame, list or environment (or object coercible by \code{\link{as.data.frame}} to a data frame) containing the variables specified in the formula. Records with mising data are omitted.}
 

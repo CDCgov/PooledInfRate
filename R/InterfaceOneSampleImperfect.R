@@ -569,5 +569,8 @@
   x
 }
 
+"as.data.frame.ipooledBin" <- function(x){
+  as.data.frame(unclass(x))
+}
 
 

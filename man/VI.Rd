@@ -54,16 +54,17 @@ VI(x, \dots)
 
 \method{print}{vectorIndex}(x, \dots)
 %\method{print}{vectorIndexList}(x, \dots)
-
+\method{as.data.frame}{vectorIndex}(x)
 \method{print}{VI}(x, \dots)
 %\method{print}{VIList}(x, \dots)
+\method{as.data.frame}{VI}(x)
 
 \method{[}{vectorIndex}(x, i, j, drop = if (missing(i)) TRUE else length(cols) ==  1)
 \method{[}{VI}(x, i, j, drop = if (missing(i)) TRUE else length(cols) ==  1)
 
 }
 \arguments{
-  \item{x}{If an object of class formula (or one that can be coerced to that class): a symbolic representation of the variables used to identify the number of positive pools, corresponding pool size, and number of pools of corresponding pool size, along with an optional grouping variable and required indication of the variable identifying the vector subgroups. A variable (trap.time) may be included for collection effort measured in collection time units for traps (e.g., mosquito trapping efforts as 'trap-nights') differ; the default is 1 for each record. See the 'Details' section below.  Otherwise a vector, specifying the observed number of positive pools, among the number of pools tested (\code{n})}
+  \item{x}{If an object of class formula (or one that can be coerced to that class): a symbolic representation of the variables used to identify the number of positive pools, corresponding pool size, and number of pools of corresponding pool size, along with an optional grouping variable and required indication of the variable identifying the vector subgroups. A variable (trap.time) may be included for collection effort measured in collection time units for traps (e.g., mosquito trapping efforts as 'trap-nights') differ; the default is 1 for each record. See the 'Details' section below.  Otherwise a vector, specifying the observed number of positive pools, among the number of pools tested (\code{n}).  For methods, objects of class \code{vectorIndex}/\code{VI}.}
 
   \item{data}{an optional data frame, list or environment (or object coercible by \code{\link{as.data.frame}} to a data frame) containing the variables specified in the formula.}
 

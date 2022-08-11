@@ -26,13 +26,13 @@ sens=rep(1,length(x)), spec=rep(1,length(x)), scale=1, tol=.Machine$double.eps^0
 max.iter=10000, p.start=NULL, \dots)
 
 \method{print}{ipooledBin}(x, \dots)
-
+\method{as.data.frame}{ipooledBin}(x)
 \method{[}{ipooledBin}(x, i, j, drop = if (missing(i)) TRUE else length(cols) ==  1)
 
 }
 
 \arguments{
-  \item{x}{If an object of class formula (or one that can be coerced to that class): a symbolic representation of the variables used to identify the number of positive pools, corresponding pool size, and number of pools of corresponding pool size, along with an optoinal grouping variable.  See the 'Details' section below. Otherwise a vector, specifying the observed number of positive pools, among the number of pools tested (\code{n}). Missing data are omitted}
+  \item{x}{If an object of class formula (or one that can be coerced to that class): a symbolic representation of the variables used to identify the number of positive pools, corresponding pool size, and number of pools of corresponding pool size, along with an optoinal grouping variable.  See the 'Details' section below. Otherwise a vector, specifying the observed number of positive pools, among the number of pools tested (\code{n}). Missing data are omitted For methods, objects of class \code{ipooledBin}.}
 
   \item{data}{an optional data frame, list or environment (or object coercible by \code{\link{as.data.frame}} to a data frame) containing the variables specified in the formula. Records with mising data are omitted.}
 

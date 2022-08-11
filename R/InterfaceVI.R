@@ -1086,6 +1086,13 @@
   invisible(x)
 }
 
+"as.data.frame.vectorIndex" <- function(x){
+  as.data.frame(unclass(x))
+}
+
+"as.data.frame.VI" <- function(x){
+  as.data.frame(unclass(x))
+}
 
 # "[.summary.vectorIndex" <-  function (x, i, j, drop = if (missing(i)) TRUE else length(cols) ==  1)  {
 #   mdrop <- missing(drop)

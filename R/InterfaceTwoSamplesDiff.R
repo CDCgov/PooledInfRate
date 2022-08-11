@@ -609,5 +609,7 @@
     invisible(x)
   }
 
-
+"as.data.frame.pooledBinDiff" <- function(x){
+  as.data.frame(unclass(x))
+}
 

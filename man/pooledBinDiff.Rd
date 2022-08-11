@@ -44,9 +44,11 @@ pIRDiff(x, \dots)
  scale = 1, alpha = 0.05, tol = .Machine$double.eps^0.5, \dots)
 
 \method{print}{pooledBinDiff}(x, \dots)
+\method{as.data.frame}{pooledBinDiff}(x)
 \method{[}{pooledBinDiff}(x, i, j, drop = if (missing(i)) TRUE else length(cols) ==  1)
 
 \method{print}{pIRDiff}(x, \dots)
+\method{as.data.frame}{pIRDiff}(x)
 \method{[}{pIRDiff}(x, i, j, drop = if (missing(i)) TRUE else length(cols) ==  1)
 
 
@@ -54,7 +56,7 @@ pIRDiff(x, \dots)
 
 
 \arguments{
-    \item{x}{If an object of class formula (or one that can be coerced to that class): a symbolic representation of the variables used to identify the number of positive pools, corresponding pool size, and number of pools of corresponding pool size, along with a required grouping variable.  See the 'Details' section below. Otherwise a vector, specifying the observed number of positive pools, among the number of pools tested (\code{n1}) in population 1}
+    \item{x}{If an object of class formula (or one that can be coerced to that class): a symbolic representation of the variables used to identify the number of positive pools, corresponding pool size, and number of pools of corresponding pool size, along with a required grouping variable.  See the 'Details' section below. Otherwise a vector, specifying the observed number of positive pools, among the number of pools tested (\code{n1}) in population 1.   For methods, objects of class \code{pooledBinDiff}/\code{pIRDiff}.}
 
   \item{data}{an optional data frame, list or environment (or object coercible by \code{\link{as.data.frame}} to a data frame) containing the variables specified in the formula. Records with mising data are omitted.}
 

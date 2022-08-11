@@ -9,11 +9,11 @@ export(pooledBin,pIR,vectorIndex,VI,pooledBinDiff,pIRDiff,
        ipooledBin,print.ipooledBin,summary.ipooledBin,print.summary.ipooledBin,
        "[.pooledBin", "[.pIR", "[.pooledBinDiff", "[.pIRDiff",
        "[.summary.pooledBin", "[.summary.pIR", "[.summary.pooledBinDiff", "[.summary.pIRDiff",
-       "[.ipooledBin","[.summary.ipooledBin")
+       "[.ipooledBin","[.summary.ipooledBin",
        #"[.pooledBinList", "[.pIRList")
-       #as.data.frame.pooledBin,as.data.frame.pIR,
-       #as.data.frame.pooledBinDiff,as.data.frame.pIRDiff,
-       #as.data.frame.ipooledBin,as.data.frame.ipooledBinList)
+       as.data.frame.pooledBin,as.data.frame.pIR,
+       as.data.frame.pooledBinDiff,as.data.frame.pIRDiff,
+       as.data.frame.ipooledBin)
 
 import(graphics,knitr)
 importFrom("stats","lm","qchisq","qnorm","uniroot","as.formula","terms","na.omit")
@@ -21,7 +21,7 @@ importFrom("stats","lm","qchisq","qnorm","uniroot","as.formula","terms","na.omit
 S3method(print,  pooledBin)
 S3method(summary,pooledBin)
 S3method(plot,   pooledBin)
-#S3method(as.data.frame,   pooledBin)
+S3method(as.data.frame,   pooledBin)
 S3method("[",pooledBin)
 
 #S3method(print,  pooledBinList)
@@ -41,7 +41,7 @@ S3method(pooledBin, formula)
 S3method(print,  pIR)
 S3method(summary,pIR)
 S3method(plot,   pIR)
-#S3method(as.data.frame,   pIR)
+S3method(as.data.frame,   pIR)
 S3method("[",pIR)
 
 
@@ -94,7 +94,7 @@ S3method(pooledBinDiff,formula)
 
 S3method(print,pooledBinDiff)
 S3method(summary,pooledBinDiff)
-#S3method(as.data.frame,pooledBinDiff)
+S3method(as.data.frame,pooledBinDiff)
 S3method("[",pooledBinDiff)
 S3method("[",summary.pooledBinDiff)
 
@@ -106,12 +106,12 @@ S3method(print,   pIRDiff)
 S3method(summary, pIRDiff)
 S3method("[",pIRDiff)
 S3method("[",summary.pIRDiff)
-#S3method(as.data.frame, pIRDiff)
+S3method(as.data.frame, pIRDiff)
 S3method(print,   summary.pIRDiff)
 
 S3method(print,  ipooledBin)
 S3method(summary,ipooledBin)
-#S3method(as.data.frame,ipooledBin)
+S3method(as.data.frame,ipooledBin)
 
 #S3method(print,  ipooledBinList)
 #S3method(summary,ipooledBinList)

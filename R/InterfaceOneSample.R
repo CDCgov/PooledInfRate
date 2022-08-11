@@ -776,3 +776,7 @@
     }
     invisible(x)
   }
+
+"as.data.frame.pooledBin" <- function(x){
+  as.data.frame(unclass(x))
+}

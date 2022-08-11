@@ -1,3 +1,10 @@
+Version 1.4
+-----------
+
+  User visible:
+
+  1. Added as.data.frame.* methods for pooledBin/pIR, pooledBinDiff/pIRDiff, ipooledBin, vectorIndex/VIR. This
+
 Version 1.3
 -----------
 

@@ -657,3 +657,8 @@
     }
     invisible(x)
   }
+
+
+"as.data.frame.pIR" <- function(x){
+  as.data.frame(unclass(x))
+}

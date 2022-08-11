@@ -138,6 +138,9 @@ pb.out[,3:4]
 pb.out[c("Lower","Upper")]
 ```
 
+Beginning with package version 1.4, returned objects of class <tt>pooledBin</tt>/<tt>pIR</tt> can be converted to data frames, using <tt>as.data.frame</tt>. This can be helpful when wanting to use estimates for other purposes, such as plotting.
+
+
 
 #### Summary and plot methods
 
@@ -258,6 +261,8 @@ pbd.out[,3:4]
 pbd.out[c("Lower","Upper")]
 ```
 
+As with the one-sample functions beginning with package version 1.4, returned objects of class <tt>pooledBinDiff</tt>/<tt>pIRDiff</tt> can be converted to data frames, using <tt>as.data.frame</tt>. This can be helpful when wanting to use estimates for other purposes, such as plotting.
+
 #### Missing data
 
 As with the one-sample functions, records with missing data on any of the variables used in the function calls are removed for estimation.
@@ -373,6 +378,8 @@ VI(Pos ~ PoolSize | Zone / Species, mosq.dat)[2,]
 VI(Pos ~ PoolSize | Zone / Species, mosq.dat)[["VI"]]
 VI(Pos ~ PoolSize | Zone / Species, mosq.dat)$VI
 ```
+
+As with the estimation functions above beginning with package version 1.4, returned objects of class <tt>vectorIndex</tt>/<tt>VI</tt> can be converted to data frames, using <tt>as.data.frame</tt>. This can be helpful when wanting to use estimates for other purposes, such as plotting.
 
 ###### Options
 

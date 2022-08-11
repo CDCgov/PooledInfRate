@@ -605,7 +605,9 @@
     invisible(x)
   }
 
-
+"as.data.frame.pIRDiff" <- function(x){
+  as.data.frame(unclass(x))
+}
 
 
 
