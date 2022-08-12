@@ -241,7 +241,6 @@
   #                  NumPools = rep(0,n),
   #                  NumPosPools = rep(0,n),
   #                  Scale = rep(1,n))
-  print(length(attr(x,"group.var")))
   if(attr(x,"n.groups") != 1) names(out)[1:length(attr(x,"group.var"))] <- attr(x,"group.var")
 
   for(i in 1:n)
