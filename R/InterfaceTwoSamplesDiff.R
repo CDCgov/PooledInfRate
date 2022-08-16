@@ -102,8 +102,8 @@
     }
     if(pt.method == "gart") pt.method <- "bc-mle" # backward compatability
 
-
-    if(missing(data))
+    have.df <- (!missing(data))
+    if(!have.df)
       data <- environment(x)
     vars <- pooledBinParseFormula(x, data)
     #if(any(sapply(vars,length)>1)) stop("only variable names permitted in formula; perhaps use the default call")
@@ -112,7 +112,7 @@
     # anywhere (even not in X, M, N, Group, they are omitted), so care should be
     # used in subsetting before the call to be assured of the desired analysis
     # restrict to only those variables needed before subsetting to avoid that issue.
-    if(!missing(data)){
+    if(have.df){
       # restrict the data to the variables needed before removing records with any NA
       # --this doesn't help when no data are specified, so that's dealt with below
       data <- data[,unlist(vars)]
@@ -134,7 +134,7 @@
     group <- eval(parse(text=vars$group), data)
 
     # restrict to data with no missing x, m, n, group
-    if(missing(data)){
+    #if(missing(data)){
       xmng.nomiss <- (!is.na(x) & !is.na(m) & !is.na(n) & !is.na(group))
       x <- x[xmng.nomiss]
       m <- m[xmng.nomiss]
@@ -142,7 +142,7 @@
       group <- group[xmng.nomiss]
       groups <- unique(group)
       nGroups <- length(groups)
-    }
+    #}
 
     mn.nozero <- (m>0 & n>0)
     x <- x[mn.nozero]

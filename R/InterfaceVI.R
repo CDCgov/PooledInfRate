@@ -140,7 +140,8 @@
   ci.method <- match.arg(ci.method)
   #print(call)
   #call[[1]] <- as.name(strsplit(as.character(call[[1]]),"\\.")[[1]][1])
-  if(missing(data))
+  have.df <- (!missing(data))
+  if(!have.df)
     data <- environment(x)
 
 
@@ -424,7 +425,8 @@
   ci.method <- match.arg(ci.method)
   #print(call)
   #call[[1]] <- as.name(strsplit(as.character(call[[1]]),"\\.")[[1]][1])
-  if(missing(data))
+  have.df <- (!missing(data))
+  if(have.df)
     data <- environment(x)
 
 

@@ -85,7 +85,8 @@
 
     pt.method <- match.arg(pt.method)
 
-    if(missing(data))
+    have.df <- (!missing(data))
+    if(!have.df)
       data <- environment(x)
 
     # omit records with missing data -- note, if data contains records missing

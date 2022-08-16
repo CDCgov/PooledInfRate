@@ -84,15 +84,152 @@
 }
 
 
+# "pIR.formula" <- function(x, data,
+#                                 pt.method = c("firth","gart","bc-mle","mle","mir"),
+#                                 ci.method = c("skew-score","bc-skew-score","score","lrt","wald","mir"),
+#                                 scale=1, alpha=0.05, tol=.Machine$double.eps^0.5, ...){
+#   call <- match.call()
+#   call[[1]] <- as.name("pIR")
+#
+#   if(missing(data))
+#     data <- environment(x)
+#
+#   vars <- pooledBinParseFormula(x, data)
+#   if(any(sapply(vars[1:3],length)>1)) stop("only variable names permitted in formula; perhaps use the default call")
+#   # omit records with missing data -- note, if data contains records missing
+#   # anywhere (even not in X, M, N, Group, they are omitted), so care should be
+#   # used in subsetting before the call to be assured of the desired analysis
+#   # restrict to only those variables needed before subsetting to avoid that issue.
+#   if(!missing(data)){
+#     # restrict the data to the variables needed before removing records with any NA
+#     # --this doesn't help when no data are specified, so that's dealt with below
+#     data <- data[,unlist(vars)]
+#     data <- na.omit(data)
+#   }
+#
+#   # retrieve values from data using the character name
+#   # use the eval(parse(text=XX), data) construct in case data is left unspecified,
+#   # and because we have the names of the variables available
+#   # from pooledBinParseFormula
+#   x <- eval(parse(text=vars$x), data)
+#   m <- eval(parse(text=vars$m), data)
+#   if(!is.null(vars$n))
+#     n <- eval(parse(text=vars$n), data)
+#   else n <- rep(1,length(x)) # default n
+#
+#   if(!is.null(vars$group[1])){
+#     # NEW as of 5/24/2022 to allow multiple grouping variables
+#     n.group.var <- length(vars$group)
+#     group.dat <- as.data.frame(matrix(nrow=length(x),ncol=n.group.var))
+#     names(group.dat) <- vars$group
+#
+#     for(i in 1:n.group.var) group.dat[,i] <- eval(parse(text=vars$group[i]),data)
+#
+#     #print(interaction(group.dat,drop=TRUE)) # drop unused levels
+#     #return(group.dat)
+#
+#     # end of NEW
+#
+#     #group <- eval(parse(text=vars$group), data)
+#     group <- interaction(group.dat,drop=TRUE)
+#     groups <- unique(group)
+#     nGroups <- length(groups)
+#     group.var <- vars$group
+#   }  else {
+#     group <- rep("SINGLE",length(x))
+#     groups <- unique(group)
+#     nGroups <- 1
+#     group.var <- ""
+#     group.dat <- data.frame()
+#   }
+#
+#   # restrict to data with no missing x, m, n, group
+#   if(missing(data)){
+#     mn.nozero <- (m>0 & n>0)
+#     x <- x[mn.nozero]
+#     m <- m[mn.nozero]
+#     n <- n[mn.nozero]
+#
+#     if(nGroups == 1){
+#       xmng.nomiss <- (!is.na(x) & !is.na(m) & !is.na(n))
+#     } else {
+#       xmng.nomiss <- (!is.na(x) & !is.na(m) & !is.na(n) & !is.na(group))
+#     }
+#     x <- x[xmng.nomiss]
+#     m <- m[xmng.nomiss]
+#     n <- n[xmng.nomiss]
+#
+#     group <- group[xmng.nomiss]
+#     groups <- unique(group)
+#     nGroups <- length(groups)
+#   }
+#
+#   mn.nozero <- (m>0 & n>0)
+#   x <- x[mn.nozero]
+#   m <- m[mn.nozero]
+#   n <- n[mn.nozero]
+#   group <- group[mn.nozero]
+#   groups <- unique(group)
+#   nGroups <- length(groups)
+#
+#   #if(nGroups > 1){
+#   ans <- vector(mode="list",length=nGroups)
+#   for(i in 1:nGroups){
+#     ans[[i]] <- pooledBin.fit(x[group==groups[i]],
+#                               m[group==groups[i]],
+#                               n[group==groups[i]],
+#                               pt.method=pt.method,
+#                               ci.method=ci.method,
+#                               scale=scale,alpha=alpha,tol=tol)
+#   }
+#   names(ans) <- groups
+#   ans.lst <- ans
+#
+#   # ans <- data.frame(Group = groups,
+#   #                   P = rep(0,  nGroups),
+#   #                   Lower = rep(0, nGroups),
+#   #                   Upper = rep(0, nGroups),
+#   #                   Scale = rep(1,  nGroups))
+#   ans <- cbind(group.dat[!duplicated(group),],
+#                data.frame(
+#                  P = rep(0,  nGroups),
+#                  Lower = rep(0, nGroups),
+#                  Upper = rep(0, nGroups),
+#                  Scale = rep(1,  nGroups))
+#   )
+#   if (!is.null(vars$group)){
+#     #names(ans)[1] <- paste0(vars$group,collapse=".") # new as of 5/26/2022 for multiple grouping variables
+#     names(ans)[1:length(vars$group)] <- vars$group
+#   }
+#   for (i in 1:nGroups) ans[i,(ncol(group.dat)-1)+ (2:5)] <- ans.lst[[i]]$scale * c(ans.lst[[i]]$p,  ans.lst[[i]]$lcl, ans.lst[[i]]$ucl, 1)
+#   if (all(ans$Scale == 1)) ans$Scale <- NULL
+#
+#   if(nGroups == 1) ans$Group <- NULL
+#
+#   # fix row names after subsetting
+#   group.dat <- as.data.frame(group.dat[!duplicated(group),])
+#   rownames(group.dat) <- 1:nrow(group.dat)
+#
+#   ans <- structure(ans, class = "pIR", fullList = ans.lst,
+#                    x.var = vars$x, m.var = vars$m, n.var = vars$n,
+#                    group.names = groups, group.var = group.var,
+#                    group.dat = group.dat,
+#                    n.groups = nGroups, scale=scale,call=call)
+#   ans
+# }
+
 "pIR.formula" <- function(x, data,
                                 pt.method = c("firth","gart","bc-mle","mle","mir"),
                                 ci.method = c("skew-score","bc-skew-score","score","lrt","wald","mir"),
                                 scale=1, alpha=0.05, tol=.Machine$double.eps^0.5, ...){
   call <- match.call()
-  call[[1]] <- as.name("pIR")
+  call[[1]] <- as.name("pooledBin")
 
-  if(missing(data))
-    data <- environment(x)
+  have.df <- (!missing(data))
+  if(!have.df){
+    data <- environment(as.formula(x))
+  }
+  #data <- environment(x)
 
   vars <- pooledBinParseFormula(x, data)
   if(any(sapply(vars[1:3],length)>1)) stop("only variable names permitted in formula; perhaps use the default call")
@@ -100,7 +237,8 @@
   # anywhere (even not in X, M, N, Group, they are omitted), so care should be
   # used in subsetting before the call to be assured of the desired analysis
   # restrict to only those variables needed before subsetting to avoid that issue.
-  if(!missing(data)){
+  #if(!missing(data)){
+  if(have.df){
     # restrict the data to the variables needed before removing records with any NA
     # --this doesn't help when no data are specified, so that's dealt with below
     data <- data[,unlist(vars)]
@@ -144,33 +282,33 @@
   }
 
   # restrict to data with no missing x, m, n, group
-  if(missing(data)){
-    mn.nozero <- (m>0 & n>0)
-    x <- x[mn.nozero]
-    m <- m[mn.nozero]
-    n <- n[mn.nozero]
-
-    if(nGroups == 1){
-      xmng.nomiss <- (!is.na(x) & !is.na(m) & !is.na(n))
-    } else {
-      xmng.nomiss <- (!is.na(x) & !is.na(m) & !is.na(n) & !is.na(group))
-    }
-    x <- x[xmng.nomiss]
-    m <- m[xmng.nomiss]
-    n <- n[xmng.nomiss]
-
-    group <- group[xmng.nomiss]
-    groups <- unique(group)
-    nGroups <- length(groups)
-  }
-
+  #if(missing(data)){
   mn.nozero <- (m>0 & n>0)
   x <- x[mn.nozero]
   m <- m[mn.nozero]
   n <- n[mn.nozero]
-  group <- group[mn.nozero]
+
+  if(nGroups == 1){
+    xmng.nomiss <- (!is.na(x) & !is.na(m) & !is.na(n))
+  } else {
+    xmng.nomiss <- (!is.na(x) & !is.na(m) & !is.na(n) & !is.na(group))
+  }
+  x <- x[xmng.nomiss]
+  m <- m[xmng.nomiss]
+  n <- n[xmng.nomiss]
+
+  group <- group[xmng.nomiss]
   groups <- unique(group)
   nGroups <- length(groups)
+  #}
+
+  # mn.nozero <- (m>0 & n>0)
+  # x <- x[mn.nozero]
+  # m <- m[mn.nozero]
+  # n <- n[mn.nozero]
+  # group <- group[mn.nozero]
+  # groups <- unique(group)
+  # nGroups <- length(groups)
 
   #if(nGroups > 1){
   ans <- vector(mode="list",length=nGroups)
@@ -216,6 +354,7 @@
                    group.dat = group.dat,
                    n.groups = nGroups, scale=scale,call=call)
   ans
+
 }
 
 "print.pIR" <- function(x, ...){

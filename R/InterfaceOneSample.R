@@ -93,8 +93,11 @@
     call <- match.call()
     call[[1]] <- as.name("pooledBin")
 
-    if(missing(data))
-      data <- environment(x)
+    have.df <- (!missing(data))
+    if(!have.df){
+      data <- environment(as.formula(x))
+    }
+      #data <- environment(x)
 
     vars <- pooledBinParseFormula(x, data)
     if(any(sapply(vars[1:3],length)>1)) stop("only variable names permitted in formula; perhaps use the default call")
@@ -102,7 +105,8 @@
     # anywhere (even not in X, M, N, Group, they are omitted), so care should be
     # used in subsetting before the call to be assured of the desired analysis
     # restrict to only those variables needed before subsetting to avoid that issue.
-    if(!missing(data)){
+    #if(!missing(data)){
+    if(have.df){
       # restrict the data to the variables needed before removing records with any NA
       # --this doesn't help when no data are specified, so that's dealt with below
       data <- data[,unlist(vars)]
@@ -146,7 +150,7 @@
     }
 
       # restrict to data with no missing x, m, n, group
-    if(missing(data)){
+      #if(missing(data)){
       mn.nozero <- (m>0 & n>0)
       x <- x[mn.nozero]
       m <- m[mn.nozero]
@@ -164,15 +168,15 @@
       group <- group[xmng.nomiss]
       groups <- unique(group)
       nGroups <- length(groups)
-    }
+      #}
 
-    mn.nozero <- (m>0 & n>0)
-    x <- x[mn.nozero]
-    m <- m[mn.nozero]
-    n <- n[mn.nozero]
-    group <- group[mn.nozero]
-    groups <- unique(group)
-    nGroups <- length(groups)
+    # mn.nozero <- (m>0 & n>0)
+    # x <- x[mn.nozero]
+    # m <- m[mn.nozero]
+    # n <- n[mn.nozero]
+    # group <- group[mn.nozero]
+    # groups <- unique(group)
+    # nGroups <- length(groups)
 
     #if(nGroups > 1){
       ans <- vector(mode="list",length=nGroups)
