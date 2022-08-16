@@ -426,7 +426,7 @@
   #print(call)
   #call[[1]] <- as.name(strsplit(as.character(call[[1]]),"\\.")[[1]][1])
   have.df <- (!missing(data))
-  if(have.df)
+  if(!have.df)
     data <- environment(x)
 
 
