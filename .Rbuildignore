@@ -10,6 +10,7 @@
 ^LICENSE$
 ^Archives\.pdf$
 ^Archives\.zip$
+^Archives$
 PIR.R
 PIR.png
 PIRWithBorder.png
