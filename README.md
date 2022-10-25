@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# <img src="PIR.png" width="120" align="right"/> PooledInfRate
+# <img src="PIR2.png" width="120" align="right"/> PooledInfRate
 
 PooledInfRate: Estimation from pooled or group testing.
 
