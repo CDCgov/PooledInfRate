@@ -173,6 +173,7 @@
       # Upper limit should agree with unpooled case when all pools negative when using a perfect test
       # this is the Wilson score upper limit
       upper.limit <-  (z^2/2/N +  z * sqrt((z^2/4/N)/N))/(1 + z^2/N)
+      return(c(p = 0, lower = 0, upper = upper.limit, alpha = alpha))
     }
     else {
       root.brak <- bracket.bounded.root(f, lower = p.hat/10, lbnd =
