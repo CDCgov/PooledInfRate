@@ -182,10 +182,16 @@
 
     rotMat <- matrix(c(cos(theta),-sin(theta),sin(theta),cos(theta)),2,2,byrow=TRUE)
 
+    # 11/14/2022
+    rotMatBody <- rotMat
+    #rotMatBody <- matrix(c(cos(theta-pi/8),-sin(theta-pi/8),sin(theta-pi/8),cos(theta-pi/8)),2,2,byrow=TRUE)
+
+    rotMatLegs <- rotMat
+    #rotMatLegs <- matrix(c(cos(theta-pi/6),-sin(theta-pi/6),sin(theta-pi/6),cos(theta-pi/6)),2,2,byrow=TRUE)
 
     # front side
     lmn <- lemniscate(a,b,from=-pi/2,to=pi/2,orientation="horizontal")
-    xy.rot <- rotMat %*% rbind(lmn$x/x.scale,lmn$y/y.scale)
+    xy.rot <- rotMatBody %*% rbind(lmn$x/x.scale,lmn$y/y.scale)
     lmn$x <- xy.rot[1,]
     lmn$y <- xy.rot[2,]
     lmn$x <- x.scale*lmn$x + x.shift
@@ -199,8 +205,9 @@
     polygonBand(lmn$x,lmn$x,lmn$y,col=col,border=FALSE)
 
     # back side
+    rotMat <- matrix(c(cos(theta),-sin(theta),sin(theta),cos(theta)),2,2,byrow=TRUE)
     lmn <- lemniscate(a,b,from=pi/2,to=3*pi/2,orientation="horizontal")
-    xy.rot <- rotMat %*% rbind((lmn$x+1.2*a)/x.scale,lmn$y/y.scale)
+    xy.rot <- rotMatBody %*% rbind((lmn$x+1.2*a)/x.scale,lmn$y/y.scale)
     lmn$x <- xy.rot[1,]
     lmn$y <- xy.rot[2,]
     lmn$x <- x.scale*(lmn$x) + x.shift
@@ -210,7 +217,7 @@
     polygonBand(lmn$x,lmn$x,lmn$y,col=col,border=FALSE)
 
 
-    head.pts <- matrix(c( 0.2,0,
+    head.pts <- matrix(c(0.2,0,
                    0.1,-0.1,
                    0.075,-0.3,
                   -0.05,-0.6,
@@ -271,7 +278,7 @@
     seg.points[1,] <- seg.points[1,]/x.scale
     seg.points[2,] <- seg.points[2,]/y.scale
 
-    seg.points.rot <- rotMat %*% seg.points
+    seg.points.rot <- rotMatLegs %*% seg.points
 
     seg.points.rot <- matrix(as.vector(seg.points.rot),ncol=4,byrow=TRUE)
 
@@ -305,10 +312,23 @@ library(hexSticker)
 
 # CDC Colors
 #s_width=0.9, s_height=1.25
+# load different fonts to evaluate
+library(sysfonts)
+font_add("Perpetua","c:/Windows/Fonts/Perpetua/PER_____.TTF")
+font_add("Perpetua Bold","c:/Windows/Fonts/Perpetua/PERB____.TTF")
+font_add("Papyrus","c:/Windows/Fonts/PAPYRUS.TTF")
+font_add("Chiller","c:/Windows/Fonts/Chiller.TTF")
+font_add("Century Schoolbook","c:/Windows/Fonts/Century Schoolbook/CENSCBK.TTF")
+font_add("Century Schoolbook Bold","c:/Windows/Fonts/Century Schoolbook/SCHLBKB.TTF")
+font_add("Goudy Old Style","c:/Windows/Fonts/Goudy Old Style/GOUDOS.TTF")
+font_add("Goudy Old Style Bold","c:/Windows/Fonts/Goudy Old Style/GOUDOSB.TTF")
+
+
 plot(sticker(img,package="PooledInfRate",
              s_width=1.25,s_height=1.25,
              h_color=cdc.blue,h_fill="white",
-             p_size=25,p_y=1.5, p_color=cdc.blue,
+             p_size=28,p_y=1.5, p_color=cdc.blue,
+             p_family = "Goudy Old Style Bold",
              s_x=1,s_y=0.75,
              h_size=1.2, # 1.2 is default
              filename="PIRV2.png",

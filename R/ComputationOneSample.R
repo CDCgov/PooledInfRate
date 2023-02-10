@@ -168,6 +168,11 @@
     p.hat <- pooledbinom.mle(x, m, n, tol)
     if(sum(x) == 0) {
       lower.limit <- 0
+      z <- qnorm(1-alpha/2)
+      N <- sum(m*n)
+      # Upper limit should agree with unpooled case when all pools negative when using a perfect test
+      # this is the Wilson score upper limit
+      upper.limit <-  (z^2/2/N +  z * sqrt((z^2/4/N)/N))/(1 + z^2/N)
     }
     else {
       root.brak <- bracket.bounded.root(f, lower = p.hat/10, lbnd =

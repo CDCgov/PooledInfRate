@@ -5,7 +5,7 @@
 
 PooledInfRate: Estimation from pooled or group testing.
 
-Current version: 1.4
+Current version: 1.5
 
 The website for this project is
 <https://github.com/CDCgov/PooledInfRate>.

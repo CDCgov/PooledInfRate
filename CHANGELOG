@@ -1,9 +1,16 @@
+Version 1.5
+-----------
+
+  User visible:
+
+  1. Revised the upper limit for the score interval to match the Wilson interval for the unpooled case when all pools are negative (for a perfect test only).
+
 Version 1.4
 -----------
 
   User visible:
 
-  1. Added as.data.frame.* methods for pooledBin/pIR, pooledBinDiff/pIRDiff, ipooledBin, vectorIndex/VIR. This
+  1. Added as.data.frame.* methods for pooledBin/pIR, pooledBinDiff/pIRDiff, ipooledBin, vectorIndex/VIR.
 
 Version 1.3
 -----------
