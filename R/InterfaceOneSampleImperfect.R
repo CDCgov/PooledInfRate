@@ -37,7 +37,7 @@
                                              max.iter=max.iter,p.start=p.start)
                 },
                 mle = {
-                  tmp.p <- ipooledbinom.firth(x[group==groups[i]],
+                  tmp.p <- ipooledbinom.mle(x[group==groups[i]],
                                                m[group==groups[i]],
                                                n[group==groups[i]],
                                                sens=sens,spec=spec,tol=tol,
