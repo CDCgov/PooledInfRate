@@ -970,7 +970,8 @@
                           as.vector(unlist(out.lst$n)),
                           as.vector(unlist(out.lst$p)),
                           as.vector(unlist(out.lst$n) * unlist(out.lst$p)))
-    names(out.dat) <- c(attr(x$vi.obj,"vectors.var"),"Avg N","P","(Avg N) * P")
+
+    names(out.dat) <- c(attr(out.lst$vi.obj,"vectors.var"),"Avg N","P","(Avg N) * P")
 
   }
 
@@ -1043,7 +1044,7 @@
                           as.vector(unlist(out.lst$n)),
                           as.vector(unlist(out.lst$p)),
                           as.vector(unlist(out.lst$n) * unlist(out.lst$p)))
-    names(out.dat) <- c(attr(x$vi.obj,"vectors.var"),"Avg N","P","(Avg N) * P")
+    names(out.dat) <- c(attr(out.lst$vi.obj,"vectors.var"),"Avg N","P","(Avg N) * P")
 
   }
 

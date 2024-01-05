@@ -255,7 +255,6 @@
     # The MLE is just used for a sensible cut-value for the search ...
     # it's not needed in the computation
     p.hat <- pooledbinom.firth(x, m, n, tol) # used to be cmle
-    p.hat <- pooledbinom.firth(x, m, n, tol) # used to be cmle
     if(sum(x) == 0)
       return(pooledbinom.score.ci(x, m, n, tol, alpha))
     # Effectively "else"

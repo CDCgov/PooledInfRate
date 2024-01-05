@@ -1,3 +1,11 @@
+Version 1.6
+-----------
+
+  User visible:
+
+  1.  Fixed an error in the naming of the object returned by vectorIndex and VI when there is only one group.
+
+
 Version 1.5
 -----------
 
